@@ -1,1 +1,34 @@
+TEMPLATE -  HTML
+<button (click)="addcmnt()">ADD</button>
+<input type="text" [(ngModel)]="newCommentText" placeholder="add comment">
+
+<ul>
+  <li *ngFor="let element of posts; let i = index">{{element}}  
+  </li>
+</ul> 
+
+*************************************************** ANGULAR ********************************************************
+import { Component } from '@angular/core';
+
+import { products } from '../products';
+
+@Component({
+  selector: 'app-product-list',
+  templateUrl: './product-list.component.html',
+  styleUrls: ['./product-list.component.css'],
+})
+export class ProductListComponent {
+  newCommentText: string = '';
+  posts: any[] = [];
+  addcmnt() {
+    if (this.newCommentText.trim() !== '') {
+      const newCommentText = {
+        commentText: this.newCommentText,
+      };
+      this.posts.push(this.newCommentText);
+      this.newCommentText = '';
+    }
+    console.log(this.posts);
+  }
+}
 
