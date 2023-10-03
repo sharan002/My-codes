@@ -1,15 +1,19 @@
 TEMPLATE -  HTML
+
+                       <h1>TO DO LIST</h1>
 <button (click)="addcmnt()">ADD</button>
-<input type="text" [(ngModel)]="newCommentText" placeholder="add comment">
+<input type="text" [(ngModel)]="newCommentText" placeholder="add comment" />
 
 <ul>
-  <li *ngFor="let element of posts; let i = index">{{element}}  
+  <li *ngFor="let element of posts; let i = index">
+    {{ element }}
+    <button (click)="deleteComment(i)" id="delete">DELETE</button>
   </li>
-</ul> 
+</ul>
+
 
 *************************************************** ANGULAR ********************************************************
 import { Component } from '@angular/core';
-
 import { products } from '../products';
 
 @Component({
@@ -29,6 +33,12 @@ export class ProductListComponent {
       this.newCommentText = '';
     }
     console.log(this.posts);
+  }
+
+  deleteComment(index) {
+    if (index >= 0 && index < this.posts.length) {
+      this.posts.splice(index, 1);
+    }
   }
 }
 
